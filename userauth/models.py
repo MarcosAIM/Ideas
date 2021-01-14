@@ -2,9 +2,11 @@ from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
+from ideas_core_api import  Idea
+
 
 #User Manager
-class UserProfileManager(BaseUserManager):
+class UserManagerProfile(BaseUserManager):
     def create_user(self,username,email,date_of_birth,password=None):
         if not username:
             raise ValueError("users must have an username.")
@@ -32,7 +34,7 @@ class UserProfileManager(BaseUserManager):
         return user
 
 #User Class
-class UserProfile(AbstractBaseUser):
+class Thinker(AbstractBaseUser):
     username = models.CharField(
     max_length=30,
     unique=True,
@@ -48,10 +50,11 @@ class UserProfile(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
-    objects = MyUserManager()
+    objects = UserManagerProfile()
 
     USERNAME_FIELD = 'username'
     EMAIL_FIELD = 'email'
+
     REQUIRED_FIELDS = ['date_of_birth']
 
 

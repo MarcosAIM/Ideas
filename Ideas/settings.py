@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'userauth',
+    'ideas_core_api',
 ]
 
 MIDDLEWARE = [
@@ -118,7 +119,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-AUTH_USER_MODEL = 'userauth.UserProfile'
+AUTH_USER_MODEL = 'userauth.Thinker'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
