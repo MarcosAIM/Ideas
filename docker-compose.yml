@@ -10,6 +10,8 @@ services:
       - POSTGRES_PASSWORD=postgres
     command:
       -p 5432 # listen on port 5432, default port either way
+    volumes:
+       - ./temp/data/pgsql:/var/lib/postgresql/data
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000

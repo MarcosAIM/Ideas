@@ -7,12 +7,6 @@ class BaseIdea(models.Model):
         ordering = ["last_modified","datetime_created"]
         verbose_name_plural = "Ideas"
 
-        permissions = [
-            ("create_idea","Can create an idea.")
-            ("modify_idea", "Can modify idea, change description.")
-            ("del_idea", "Can delete idea.")
-        ]
-
     description = models.TextField()
     datetime_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)

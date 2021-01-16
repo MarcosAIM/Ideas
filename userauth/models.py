@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
-from ideas_core_api import  Idea
 
 
 #User Manager
