@@ -5,9 +5,9 @@ FROM python:3.9.1-alpine3.12
 ENV PYTHONUNBUFFERED=1
 
 # set working directory
-WORKDIR /app
+WORKDIR /app/rest_api
 
-# copy requirements.txt from docs into working directory
+# copy requirements.txt into working directory
 COPY requirements.txt .
 
 # install psycopg2 dependencies
@@ -17,8 +17,8 @@ RUN apk update \
 # install dependencies
 RUN pip install -r requirements.txt
 
-# copy rest of web to app
+# copy rest of rest_api
 COPY . .
 
 # run entrypoint.sh
-ENTRYPOINT ["/app/entrypoint.sh"]
+ENTRYPOINT ["/app/rest_api/entrypoint.sh"]

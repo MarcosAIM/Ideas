@@ -14,17 +14,28 @@ services:
        - ./temp/data/pgsql:/var/lib/postgresql/data
     restart: always
 
-  web:
-    build: ./app
+  rest_api:
+    build: ./app/rest_api/
     command: python init_setup.py
     volumes:
-      - ./app/:/app
+      - ./app/rest_api/:/app/rest_api/
     ports:
       - "8000:8000"
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - db
+
+  frontend:
+    build: ./app/frontend/
+    command: yarn start
+    volumes:
+      - ./app/frontend/:/app/frontend/
+    ports:
       - "3000:3000"
       - "35729:35729"
     env_file:
       - ./.env.dev
     stdin_open: true
     depends_on:
-      - db
+      - rest_api
