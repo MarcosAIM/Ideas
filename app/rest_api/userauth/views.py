@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from .serializer import ThinkerSerializer
+from rest_framework import viewsets
+from .models import Thinker
 
-# Create your views here.
+
+class ThinkerViewSet(viewsets.ModelViewSet):
+    queryset = Thinker.objects.all()
+    serializer_class = ThinkerSerializer

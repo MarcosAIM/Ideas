@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from corsheaders.defaults import default_methods, default_headers
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -119,9 +120,19 @@ STATIC_URL = '/static/'
 
 #REST FRAMEWORK
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
+    # Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+CORS_ALLOWED_ORIGINS = [
+    os.environ.get("REACT_ROOT", "http://127.0.0.1:3000"),
+]
+CSRF_TRUSTED_ORIGINS = [
+    os.environ.get("REACT_ROOT", "http://127.0.0.1:3000"),
+]
+
+CORS_ALLOW_METHODS = list(default_methods) + []
+CORS_ALLOW_HEADERS = list(default_headers)
