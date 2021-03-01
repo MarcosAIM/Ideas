@@ -5,7 +5,7 @@ FROM python:3.9.1-alpine3.12
 ENV PYTHONUNBUFFERED=1
 
 # set working directory
-WORKDIR /app/rest_api
+WORKDIR /app
 
 # copy requirements.txt into working directory
 COPY requirements.txt .
@@ -21,4 +21,4 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # run entrypoint.sh
-ENTRYPOINT ["/app/rest_api/entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh","python","init_setup.py"]

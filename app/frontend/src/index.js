@@ -5,5 +5,5 @@ import './index.css';
 
 ReactDOM.render(
 React.CreateElement("h1",null, "Hey"),
-  document.getElementById('root')
+  document.getElementById('roota')
 );

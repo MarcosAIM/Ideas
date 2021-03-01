@@ -15,27 +15,32 @@ services:
     restart: always
 
   rest_api:
-    build: ./app/rest_api/
-    command: python init_setup.py
+    build:
+      context: ./app/rest_api/
+      dockerfile: Dockerfile.dev
+
     volumes:
-      - ./app/rest_api/:/app/rest_api/
+      - ./app/rest_api/:/app/
+
     ports:
       - "8000:8000"
+
     env_file:
       - ./.env.dev
+
     depends_on:
       - db
 
   frontend:
-    build: ./app/frontend/
-    command: yarn start
-    volumes:
-      - ./app/frontend/:/app/frontend/
+    stdin_open: true
+
+    build:
+      context: ./app/frontend/
+      dockerfile: Dockerfile.dev
+
     ports:
       - "3000:3000"
       - "35729:35729"
-    env_file:
-      - ./.env.dev
-    stdin_open: true
-    depends_on:
-      - rest_api
+    volumes:
+      - /app/node_modules/
+      - ./app/frontend/:/app/
