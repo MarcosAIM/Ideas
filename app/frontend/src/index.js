@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-
+import App from './App'
 
 ReactDOM.render(
-React.CreateElement("h1",null, "Hey"),
-  document.getElementById('roota')
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
 );

@@ -6,7 +6,7 @@ from corsheaders.defaults import default_methods, default_headers
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = "0ug+9=vnaebyh$s*i05w!m5@(0(w!p#13(pj(048+e+j4d*fq1"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get('DEBUG',default=0))
