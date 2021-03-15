@@ -6,12 +6,17 @@ WORKDIR /app
 
 ENV PATH /app/node_modules/.bin:$PATH
 
+#React on port 3000
+EXPOSE 3000
+
+# copy package.json to install dependencies
 COPY package.json .
 
 # nodejs
-RUN yarn install
+RUN npm install
 
 # copy rest of web to app
 COPY . .
 
-CMD ["yarn", "run", "start"]
+#Run development
+CMD ["npm", "run", "dev"]

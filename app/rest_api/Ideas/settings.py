@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-from corsheaders.defaults import default_methods, default_headers
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,8 +78,6 @@ DATABASES = {
 
 
 # Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -98,7 +95,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
@@ -106,15 +102,11 @@ USE_L10N = True
 USE_TZ = True
 
 
-
 # USER MODEL
-
 AUTH_USER_MODEL = 'userauth.Thinker'
 
 
-
 # Static files (CSS, JavaScript, Images)
-
 STATIC_URL = '/static/'
 
 
@@ -127,12 +119,5 @@ REST_FRAMEWORK = {
     ]
 }
 
-CORS_ALLOWED_ORIGINS = [
-    os.environ.get("REACT_ROOT", "http://127.0.0.1:3000"),
-]
-CSRF_TRUSTED_ORIGINS = [
-    os.environ.get("REACT_ROOT", "http://127.0.0.1:3000"),
-]
 
-CORS_ALLOW_METHODS = list(default_methods) + []
-CORS_ALLOW_HEADERS = list(default_headers)
+CORS_ORIGIN_ALLOW_ALL = True
