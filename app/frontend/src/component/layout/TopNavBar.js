@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar,Nav} from 'react-bootstrap';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import UserSection from '../UserSection.js';
+import UserSection from '../user/UserSection';
 
 const Styles = styled.div`
   .navbar {
