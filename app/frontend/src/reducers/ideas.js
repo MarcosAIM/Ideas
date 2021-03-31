@@ -1,4 +1,4 @@
-import { GET_IDEAS } from '../actions/types.js';
+import { GET_IDEAS, DELETE_IDEA, ADD_IDEA } from '../actions/types.js';
 
 const initialState = {
     ideas: []
@@ -11,6 +11,17 @@ export default (state= initialState, action)=>{
                 ...state,
                 ideas: action.payload
             };
+        case ADD_IDEA:
+            return {
+                ...state,
+                ideas: [...state.leads, action.payload]
+            };
+        case DELETE_IDEA:
+            return {
+                ...state,
+                ideas: state.ideas.filter(idea => idea.id !== action.payload)
+            };
+
         default:
             return state;
     }

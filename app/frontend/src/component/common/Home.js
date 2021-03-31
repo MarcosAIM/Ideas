@@ -1,7 +1,7 @@
 import React from 'react';
 import Ideas from "../common/Ideas";
 
-class DashBoard extends React.Component {
+class HOME extends React.Component {
   render() {
     return (
         <React.Fragment>
@@ -14,4 +14,4 @@ class DashBoard extends React.Component {
   }
 }
 
-export default DashBoard;
+export default HOME;

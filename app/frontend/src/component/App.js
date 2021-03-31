@@ -12,9 +12,9 @@ import Jumbotron from './layout/Jumbotron';
 
 // common components
 import Home from "./common/Home";
+import IdeaForm from "./common/IdeaForm";
 
 // user components
-import DashBoard from "./user/DashBoard";
 
 
 class App extends React.Component {
@@ -32,7 +32,7 @@ class App extends React.Component {
               <Layout>
               <Switch>
                 <Route exact path='/' component={Home} />
-                <Route path='/dashboard' component={DashBoard} />
+                <Route path='/new-idea' component={IdeaForm} />
               </Switch>
               </Layout>
           </Router>

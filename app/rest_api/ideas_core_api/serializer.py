@@ -4,4 +4,4 @@ from .models import BaseIdea
 class IdeaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BaseIdea
-        fields = ['title','description', 'author']
+        fields = ['id','title','description', 'creator_profile']

@@ -2,11 +2,13 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
-import { getIdeas } from "../../actions/ideas"; 
+import { deleteIdea, getIdeas } from "../../actions/ideas"; 
 
 class Ideas extends React.Component{
     static propTypes = {
-        ideas: PropTypes.array.isRequired
+        ideas: PropTypes.array.isRequired,
+        getIdeas: PropTypes.func.isRequired,
+        deleteIdea: PropTypes.func.isRequired,
     }
 
     componentDidMount(){
@@ -28,12 +30,12 @@ class Ideas extends React.Component{
                 </tr>
               </thead>
               <tbody>
-                { this.props.ideas.map(ideas => (
-                  <tr key={ideas.id}>
-                  <td>{ideas.title}</td>  
-                  <td>{ideas.description}</td>
-                  <td>{ideas.author}</td>
-                  <td><button className = "btn btn-danger btn-sm">Delete</button></td>
+                { this.props.ideas.map(idea => (
+                  <tr key={idea.id}>
+                  <td>{idea.title}</td>  
+                  <td>{idea.description}</td>
+                  <td>{idea.creator_profile}</td>
+                  <td><button onClick={this.props.deleteIdea.bind(this, idea.id)} className = "btn btn-danger btn-sm">Delete</button></td>
                   </tr>
                 ))}
               </tbody>
@@ -50,4 +52,4 @@ const mapStateToProps = state =>({
     ideas: state.ideas.ideas
 });
 
-export default connect(mapStateToProps, { getIdeas } )(Ideas);
+export default connect(mapStateToProps, { getIdeas, deleteIdea } )(Ideas);

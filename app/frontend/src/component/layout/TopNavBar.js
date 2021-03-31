@@ -26,21 +26,19 @@ class TopNavBar extends React.Component{
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
+                
                 <Nav.Item>
                   <Nav.Link>
                     <Link to ='/'>Home</Link>
                   </Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link>
-                    <Link to ='/explore'>Explore</Link>
-                  </Nav.Link>
-                </Nav.Item>
+
                 <Nav.Item>
                   <Nav.Link>
                     <Link to ='/new-idea'>New</Link>
                   </Nav.Link>
                 </Nav.Item>
+
               </Nav>
               <Nav>
                 <UserSection />

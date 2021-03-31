@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_IDEAS } from './types';
+import { GET_IDEAS, DELETE_IDEA } from './types';
 
 // GET IDEAS
 export const getIdeas = () => dispatch => {
@@ -8,6 +8,30 @@ export const getIdeas = () => dispatch => {
         .then(res =>{
             dispatch({
                 type: GET_IDEAS,
+                payload: res.data
+            });
+        }).catch(error => console.log(error));
+
+}
+
+// DELETE IDEA
+export const deleteIdea = (id) => dispatch => {
+    axios.delete(`http://localhost:8000/api/Idea/${id}/`)
+        .then(res =>{
+            dispatch({
+                type: DELETE_IDEA,
+                payload: id
+            });
+        }).catch(error => console.log(error));
+
+}
+
+// ADD IDEAS
+export const addIdea = (idea) => dispatch => {
+    axios.post('http://localhost:8000/api/Idea/', idea)
+        .then(res =>{
+            dispatch({
+                type: ADD_IDEA,
                 payload: res.data
             });
         }).catch(error => console.log(error));

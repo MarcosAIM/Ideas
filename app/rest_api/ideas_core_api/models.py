@@ -11,7 +11,8 @@ class BaseIdea(models.Model):
     description = models.TextField()
     datetime_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='ideas', on_delete=models.CASCADE)
+    creator_profile = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='ideas', 
+    on_delete=models.CASCADE, blank=True, null=True )
 
     class Meta:
         ordering = ['last_modified']
