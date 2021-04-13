@@ -7,19 +7,19 @@ class IdeaForm extends React.Component {
   state = {
     title: '',
     description: '',
-  }
+  };
 
   static propTypes = {
     addIdea: PropTypes.func.isRequired
-  }
+  };
 
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = (e) => {
     e.preventDefault();
     const { title, description } = this.state;
-    const lead = { title, description };
-    this.props.addIdea(lead);
+    const idea = { title, description };
+    this.props.addIdea(idea);
     this.setState({
       title: '',
       description: '',

@@ -30,7 +30,7 @@ class Ideas extends React.Component{
                 </tr>
               </thead>
               <tbody>
-                { this.props.ideas.map(idea => (
+                { this.props.ideas.map((idea) => (
                   <tr key={idea.id}>
                   <td>{idea.title}</td>  
                   <td>{idea.description}</td>
@@ -44,7 +44,7 @@ class Ideas extends React.Component{
             </table>
 
             </Container>
-        )
+        );
     }
 }
 

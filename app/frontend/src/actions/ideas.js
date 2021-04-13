@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_IDEAS, DELETE_IDEA } from './types';
+import { GET_IDEAS, DELETE_IDEA, ADD_IDEA, GET_ERROR } from './types';
 
 // GET IDEAS
 export const getIdeas = () => dispatch => {
@@ -34,6 +34,15 @@ export const addIdea = (idea) => dispatch => {
                 type: ADD_IDEA,
                 payload: res.data
             });
-        }).catch(error => console.log(error));
+        }).catch(err => {
+            const error = {
+                msg: err.response.data,
+                status: err.response.status
+            }
+            dispatch({
+                type: GET_ERROR,
+                payload: error
+            })
+        });
 
 }

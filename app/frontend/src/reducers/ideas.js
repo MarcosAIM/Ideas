@@ -11,11 +11,13 @@ export default (state= initialState, action)=>{
                 ...state,
                 ideas: action.payload
             };
+
         case ADD_IDEA:
             return {
                 ...state,
-                ideas: [...state.leads, action.payload]
+                ideas: [...state.ideas, action.payload]
             };
+            
         case DELETE_IDEA:
             return {
                 ...state,
