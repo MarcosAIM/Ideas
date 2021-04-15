@@ -4,9 +4,16 @@ from .models import BaseIdea
 
 
 class IdeaViewSet(viewsets.ModelViewSet):
-    queryset = BaseIdea.objects.all()
     serializer_class = IdeaSerializer
+
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated
     ]
+
+    def get_queryset(self):
+        self.request.user.BaseIdea.all()
+
+    def perform_create(self, serializer):
+        serializer.save(creator_profile=self.request.user)
+
     

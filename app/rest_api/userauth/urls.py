@@ -1,8 +1,8 @@
-from rest_framework import routers
-from .api import ThinkerViewSet
+from django.urls import path, include
+from .api import RegistAPI
+from knox import views as knox_views
 
-
-router = routers.DefaultRouter()
-router.register('api/Thinker',ThinkerViewSet, 'thinker')
-
-urlpatterns = router.urls
+urlpatterns = [
+    path('api/auth', include('knox.urls')),
+    path('api/auth/register', RegistAPI.as_view())
+]

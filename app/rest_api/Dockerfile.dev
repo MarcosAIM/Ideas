@@ -1,24 +1,19 @@
-# start from python image
-FROM python:3.9.1-alpine3.12
+# start from python alpine image
+FROM python:3.10.0a7-buster
 
-# set environment variables
-ENV PYTHONUNBUFFERED=1
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y gcc netcat-openbsd && \
+    apt-get clean
 
-# set working directory
-WORKDIR /app
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-# copy requirements.txt into working directory
-COPY requirements.txt .
+RUN pip install --upgrade pip
 
-# install psycopg2 dependencies
-RUN apk update \
-    && apk add postgresql-dev gcc python3-dev musl-dev
+WORKDIR /usr/src/app
 
-# install dependencies
+COPY ./requirements.txt .
 RUN pip install -r requirements.txt
-
-# copy rest of rest_api
-COPY . .
-
-# run entrypoint.sh
-ENTRYPOINT ["/app/entrypoint.sh","python","init_setup.py"]
+COPY . /usr/src/app
+ENTRYPOINT ["/usr/src/app/entrypoint.sh","python","init_setup.py"]

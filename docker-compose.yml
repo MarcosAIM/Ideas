@@ -19,7 +19,7 @@ services:
       context: ./app/rest_api/
       dockerfile: Dockerfile.dev
     volumes:
-      - ./app/rest_api/:/app/
+      - ./app/rest_api/:/usr/src/app/
     ports:
       - "8000:8000"
     env_file:

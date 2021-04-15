@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'userauth',
     'ideas_core_api',
+    'knox'
 ]
 
 MIDDLEWARE = [
@@ -113,3 +114,8 @@ STATIC_URL = '/static/'
 
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': 
+    ('knox.auth.TokenAuthentication',)
+}
