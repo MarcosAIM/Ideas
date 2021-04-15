@@ -22,7 +22,7 @@ class IdeaForm extends React.Component {
     this.props.addIdea(idea);
     this.setState({
       title: '',
-      description: '',
+      description: ''
     });
   };
 

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { GET_IDEAS, DELETE_IDEA, ADD_IDEA, GET_ERROR } from './types';
+import { createMessage } from './messages';
 
 // GET IDEAS
 export const getIdeas = () => dispatch => {
@@ -18,6 +19,7 @@ export const getIdeas = () => dispatch => {
 export const deleteIdea = (id) => dispatch => {
     axios.delete(`http://localhost:8000/api/Idea/${id}/`)
         .then(res =>{
+            dispatch(createMessage({ ideaDeleted: 'Idea Deleted'}));
             dispatch({
                 type: DELETE_IDEA,
                 payload: id
@@ -30,6 +32,7 @@ export const deleteIdea = (id) => dispatch => {
 export const addIdea = (idea) => dispatch => {
     axios.post('http://localhost:8000/api/Idea/', idea)
         .then(res =>{
+            dispatch(createMessage({ ideaAdded: 'Idea Added'}));
             dispatch({
                 type: ADD_IDEA,
                 payload: res.data
