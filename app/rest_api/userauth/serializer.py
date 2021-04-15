@@ -23,5 +23,12 @@ class RegisterSerializer(serializers.ModelSerializer):
         return thinker
 
 #Login Serializer
-class LoginSerializer(serializers.ModelSerializer):
-    pass
+class LoginSerializer(serializers.Serializer):
+  username = serializers.CharField()
+  password = serializers.CharField()
+
+  def validate(self, data):
+    thinker = authenticate(**data)
+    if thinker and thinker.is_active:
+      return thinker
+    raise serializers.ValidationError("Incorrect Credentials")
