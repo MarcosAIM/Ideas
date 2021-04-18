@@ -1,6 +1,5 @@
 from .serializer import IdeaSerializer
 from rest_framework import viewsets, permissions
-from .models import BaseIdea
 
 
 class IdeaViewSet(viewsets.ModelViewSet):
@@ -11,7 +10,7 @@ class IdeaViewSet(viewsets.ModelViewSet):
     ]
 
     def get_queryset(self):
-        self.request.user.BaseIdea.all()
+        return self.request.user.ideas.all()
 
     def perform_create(self, serializer):
         serializer.save(creator_profile=self.request.user)

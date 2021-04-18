@@ -18,6 +18,12 @@ class Alerts extends React.Component {
             alert.error(`Title: ${error.msg.title.join()}`);
           if(error.msg.description) 
             alert.error(`Description: ${error.msg.description.join()}`);
+          if(error.msg.non_field_errors) 
+            alert.error(error.msg.non_field_errors.join());
+          if(error.msg.username) 
+            alert.error(error.msg.username.join());
+          if(error.msg.email) 
+            alert.error(error.msg.email.join());
         }
 
         if(message !== prevProps.message){
@@ -25,6 +31,8 @@ class Alerts extends React.Component {
             alert.success(message.ideaDeleted);
           if(message.ideaAdded) 
             alert.success(message.ideaAdded);
+          if(message.passwordsNoMatch) 
+            alert.error(message.passwordsNoMatch);
         }
 
     }

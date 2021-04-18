@@ -1,8 +1,10 @@
 import React from 'react';
-import { Navbar,Nav} from 'react-bootstrap';
+import { Navbar,Nav, Button} from 'react-bootstrap';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import UserSection from '../user/UserSection';
+import { connect } from 'react-redux';
+import { PropTypes} from 'prop-types';
+import { logoutUser } from "../../actions/auth";
 
 const Styles = styled.div`
   .navbar {
@@ -17,11 +19,45 @@ const Styles = styled.div`
 `;
 
 class TopNavBar extends React.Component{
+  static propTypes = {
+    auth: PropTypes.object.isRequired,
+    logoutUser: PropTypes.func.isRequired
+  }
+
   render() {
+    const  { isAuthenticated, thinker } = this.props.auth;
+
+    const authLinks = (
+      <div>
+        <span className="navbar-text mr-3">
+          <strong>
+            { thinker ? `Welcome ${thinker.username}` : "" }
+          </strong>
+        </span>
+      <Button onClick={this.props.logoutUser}>LOGOUT</Button>
+      </div>
+    );
+
+    const guessLinks = (
+      <div>
+      <Nav.Item>
+      <Nav.Link>
+        <Link to ='/register'>Register</Link>
+      </Nav.Link>
+    </Nav.Item>
+
+      <Nav.Item>
+        <Nav.Link>
+          <Link to ='/login'>Login</Link>
+        </Nav.Link>
+      </Nav.Item>
+      </div>
+    );
+
+
     return (
         <Styles>
           <Navbar expand='md'>
-
             <Navbar.Brand href="/">IDEAS</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">
@@ -39,9 +75,8 @@ class TopNavBar extends React.Component{
                   </Nav.Link>
                 </Nav.Item>
 
-              </Nav>
-              <Nav>
-                <UserSection />
+                {isAuthenticated ? authLinks : guessLinks}
+                
               </Nav>
             </Navbar.Collapse>
           </Navbar>
@@ -50,4 +85,8 @@ class TopNavBar extends React.Component{
   }
 }
 
-export default TopNavBar;
+const mapStateToPropTypes = ( state) => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToPropTypes, {logoutUser})(TopNavBar);

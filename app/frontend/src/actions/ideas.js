@@ -2,10 +2,11 @@ import axios from 'axios';
 
 import { GET_IDEAS, DELETE_IDEA, ADD_IDEA, GET_ERROR } from './types';
 import { createMessage, returnErrors } from './messages';
+import { tokenConfig } from "./auth";
 
 // GET IDEAS
-export const getIdeas = () => dispatch => {
-    axios.get('http://localhost:8000/api/Idea/')
+export const getIdeas = () => (dispatch, getState ) => {
+    axios.get('http://localhost:8000/api/Idea/', tokenConfig(getState))
         .then(res =>{
             dispatch({
                 type: GET_IDEAS,
@@ -17,8 +18,8 @@ export const getIdeas = () => dispatch => {
 }
 
 // DELETE IDEA
-export const deleteIdea = (id) => dispatch => {
-    axios.delete(`http://localhost:8000/api/Idea/${id}/`)
+export const deleteIdea = (id) => (dispatch, getState ) => {
+    axios.delete(`http://localhost:8000/api/Idea/${id}/`, tokenConfig(getState))
         .then(res =>{
             dispatch(createMessage({ ideaDeleted: 'Idea Deleted'}));
             dispatch({
@@ -30,8 +31,8 @@ export const deleteIdea = (id) => dispatch => {
 }
 
 // ADD IDEAS
-export const addIdea = (idea) => dispatch => {
-    axios.post('http://localhost:8000/api/Idea/', idea)
+export const addIdea = (idea) => (dispatch, getState ) => {
+    axios.post('http://localhost:8000/api/Idea/', idea, tokenConfig(getState))
         .then(res =>{
             dispatch(createMessage({ ideaAdded: 'Idea Added'}));
             dispatch({
