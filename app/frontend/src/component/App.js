@@ -1,7 +1,7 @@
 import React from 'react';
 import {hot} from 'react-hot-loader';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {HashRouter as Router,Switch,Route,Redirect} from "react-router-dom";
+import {HashRouter as Router,Switch,Route} from "react-router-dom";
 import { Provider } from 'react-redux';
 import store from '../store';
 
@@ -17,13 +17,11 @@ import Alerts from './Layout/Alerts';
 
 // common components
 import Home from "./common/Home";
-import IdeaForm from "./common/IdeaForm";
 import PrivateRoute from './common/privateRoute';
 
 // user components
 import Register from "./user/Register";
 import Login from "./user/Login";
-import DashBoard from './user/DashBoard'
 
 import { loadUser } from "../actions/auth";
 
@@ -51,7 +49,6 @@ class App extends React.Component {
                 <Layout>
                 <Switch>
                   <PrivateRoute exact path='/' component={Home} />
-                  <Route path='/new-idea' component={IdeaForm} />
                   <Route path='/register' component={Register} />
                   <Route path='/login' component={Login} />
                 </Switch>

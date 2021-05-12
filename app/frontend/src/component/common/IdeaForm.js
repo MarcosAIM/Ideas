@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addIdea } from '../../actions/ideas';
 
+
 class IdeaForm extends React.Component {
   state = {
     title: '',

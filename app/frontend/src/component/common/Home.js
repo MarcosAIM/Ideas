@@ -2,7 +2,7 @@ import React from 'react';
 import Ideas from "./Ideas";
 import IdeasForm from './IdeaForm'
 
-
+// HOME PAGE
 class HOME extends React.Component {
   render() {
     return (
